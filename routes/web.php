@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\account\LoginController;
+use App\Http\Controllers\account\RegisterController;
+use App\Http\Controllers\CampgroundsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('landing');
 });
+Route::get('/campgrounds', [CampgroundsController::class, 'index'])->name('campgrounds');
+Route::get('/register', [RegisterController::class, 'index'])->name('register');
+Route::post('/register', [RegisterController::class, 'store']);
+Route::get('/login', [LoginController::class, 'index'])->name('login');
