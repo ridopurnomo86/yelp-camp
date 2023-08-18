@@ -17,7 +17,7 @@
                 <h1 class="text-6xl text-neutral-950 font-bold antialiased mb-4">Explore the best camps on Earth.</h1>
                 <p class="font-medium text-lg antialiased text-neutral-500 mb-4">YelpCamp is a curated list of the best
                     camping spots on Earth. Unfiltered and un abiased reviews.</p>
-                <ul class="">
+                <ul>
                     <li class="flex items-center mb-3">
                         <img src="{{ asset('assets/icons/Checkmark.svg') }}" alt="checkmark-icon" />
                         <p class="ml-4 font-medium text-lg antialiased text-neutral-500">Add your own camp suggestions.
@@ -34,11 +34,11 @@
                         </p>
                     </li>
                 </ul>
-                <button class="mt-8 bg-neutral-950 text-white font-medium text-lg antialiased py-4 px-6 rounded">
-                    <a href="/campgrounds">
+                <a href="/campgrounds">
+                    <button class="mt-8 bg-neutral-950 text-white font-medium text-lg antialiased py-4 px-6 rounded">
                         View Campgrounds
-                    </a>
-                </button>
+                    </button>
+                </a>
                 <div class="mt-10">
                     <p class="font-medium text-lg antialiased text-neutral-500">Partnered with:</p>
                     <div class="flex">

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>Login</title>
     @vite('resources/css/app.css')
 </head>
 
@@ -23,8 +23,13 @@
             <div class="w-full h-full flex items-center min-[1200px]:justify-center">
                 <div>
                     <h1 class="text-3xl text-neutral-950 font-bold antialiased mb-6">Start exploring camps from all around the world.</h1>
-                    <form action="{{ route('register') }}" method="POST">
+                    <form action="{{ route('login') }}" method="POST">
                         @csrf
+                        @if (session('status'))
+                        <div class="bg-red-500 p-4 rounded mb-6">
+                            <p class="text-white antialiased text-center text-md">{{ session('status') }}</p>
+                        </div>
+                        @endif
                         <div class="mb-6">
                             <label for="username" class="block mb-2 font-medium text-md antialiased text-neutral-500">Username</label>
                             <input type="text" class="rounded p-4 bg-neutral-50 block w-full @error('username') border border-red-500 @enderror" placeholder="johndoe_91" name="username" id="username" />
@@ -44,12 +49,12 @@
                             @enderror
                         </div>
                         <button class="w-full block bg-neutral-950 text-white font-medium text-md antialiased p-4 rounded">
-                            Create an account
+                            Login
                         </button>
                     </form>
                     <span class="flex mt-4">
-                        <p class="mr-1 font-medium text-sm antialiased text-neutral-500">Already a user?</p>
-                        <a href="{{ route('login') }}" class="underline font-bold text-sm antialiased text-cyan-500">Sign in</a>
+                        <p class="mr-1 font-medium text-sm antialiased text-neutral-500">Not a user yet ?</p>
+                        <a href="{{ route('register') }}" class="underline font-bold text-sm antialiased text-cyan-500">Create an account</a>
                     </span>
                 </div>
             </div>
