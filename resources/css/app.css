@@ -8,3 +8,12 @@
 * {
     font-family: 'Archivo', sans-serif;
 }
+
+@media screen and (max-width: 680px) {
+    .container {
+      max-width: 600px;
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+  }
+  

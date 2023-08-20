@@ -23,7 +23,14 @@
                     Search
                 </button>
             </div>
-            <a href="#" class="underline font-medium text-md antialiased text-neutral-500 mb-2">Or add your own campground</a>
+            <a href="{{ route('add-campground') }}" class="underline font-medium text-md antialiased text-neutral-500 mb-2">Or add your own campground</a>
+        </div>
+        <div class="my-20 grid grid-cols-3 max-[1200px]:grid-cols-2 max-[654px]:grid-cols-1 gap-8">
+            @foreach ($camps as $camp)
+            <div class="w-full">
+                <x-cards.camp-card path="/campgrounds/{{ $camp->slug }}" title="{{ $camp->camp_name }}" description="{{ $camp->description }}" image="{{ $camp->image_url }}" />
+            </div>
+            @endforeach
         </div>
     </main>
 </body>

@@ -16,7 +16,7 @@ class RegisterController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|min:8',
+            'username' => 'required|min:8|unique:users',
             'password' => 'required|min:8'
         ]);
 
@@ -28,7 +28,5 @@ class RegisterController extends Controller
         ]);
 
         return redirect()->route('login');
-
-        // return dd($request->username);
     }
 }
