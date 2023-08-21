@@ -19,11 +19,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('landing');
-});
+})->name('landing');
 Route::get('/campgrounds', [CampgroundsController::class, 'index'])->name('campgrounds');
 Route::get('/campgrounds/add', [CampgroundsController::class, 'add'])->name('add-campground');
 Route::post('/campgrounds/add', [CampgroundsController::class, 'store']);
 Route::get('/campgrounds/{slug}', [CampgroundsController::class, 'detail'])->name('campgrounds-detail');
+Route::get('/campgrounds/{slug}/comment', [CampgroundsController::class, 'comment'])->name('campgrounds-comment')->middleware('auth');
+Route::post('/campgrounds/{slug}/comment', [CampgroundsController::class, 'storeComment'])->middleware('auth');
 Route::get('/register', [RegisterController::class, 'index'])->name('register')->middleware('guest');
 Route::post('/register', [RegisterController::class, 'store'])->middleware('guest');
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

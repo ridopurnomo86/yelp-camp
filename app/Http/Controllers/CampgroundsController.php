@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Camp;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
@@ -29,17 +30,23 @@ class CampgroundsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'camp_name' => 'required',
+            'camp_name' => 'required|string',
             'price' => 'required|numeric',
             'image_url' => 'required|url',
-            'description' => 'required',
+            'description' => 'required|string',
+            'latitude' => 'required|string',
+            'longitude' => 'required|string'
         ]);
+        
 
         $request->user()->camps()->create([
             'camp_name' => $request->camp_name,
-            // 'price' => $request->price,
+            'price' => $request->price,
+            'slug' => Str::slug($request->camp_name, '-'),
             'image_url' => $request->image_url,
             'description' => $request->description,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
         ]);
 
         return redirect()->route('campgrounds');
@@ -49,8 +56,43 @@ class CampgroundsController extends Controller
     {
         $camp = Camp::where('slug', $slug)->firstOrFail();
 
+        $comments = Comment::where('camp_id', $camp->id)->get();
+
         if (!$camp) return abort(404);
 
-        return view('campgrounds-detail', ['camp' => $camp]);
+        return view('campgrounds-detail', ['camp' => $camp, 'comments' => $comments]);
+    }
+
+    public function comment(Request $request, string $slug)
+    {
+        $camp = Camp::where('slug', $slug)->firstOrFail();
+
+        if (!$camp) return abort(404);
+
+        return view('campgrounds-comment');
+    }
+
+    public function storeComment(Request $request, string $slug)
+    {
+        $camp_id = Camp::where('slug', $slug)->firstOrFail()->id;
+        $user_id = Auth::user()->id;
+
+        $this->validate($request, [
+            'description' => 'required|string',
+        ]);
+
+        if ($camp_id and $user_id) {
+            $comment = new Comment;
+
+            $comment->user_id = $user_id;
+            $comment->camp_id = $camp_id;
+            $comment->description = $request->description;
+            $comment->save();
+
+            return redirect()->route('campgrounds-detail', [$slug]);
+
+        }
+
+        return abort(500);
     }
 }

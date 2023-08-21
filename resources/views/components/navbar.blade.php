@@ -1,8 +1,10 @@
 <nav class="mx-auto container py-8">
     <div class="flex items-center justify-between w-full">
         <div class="flex items-center">
-            <img src="{{ asset('assets/icons/Logo.svg') }}" alt="logo-icon" />
-            <a href="/campgrounds" class="ml-6 font-medium text-md antialiased text-neutral-500 leading-10 mt-1">Home</a>
+            <a href="{{ route('landing') }}">
+                <img src="{{ asset('assets/icons/Logo.svg') }}" alt="logo-icon" />
+            </a>
+            <a href="{{ route('campgrounds') }}" class="ml-6 font-medium text-md antialiased text-neutral-500 leading-10 mt-1">Home</a>
         </div>
         @auth
         <div class="flex items-center">

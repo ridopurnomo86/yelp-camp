@@ -44,6 +44,26 @@
                             </p>
                             @enderror
                         </div>
+                        <div class="mb-6 grid grid-cols-2 gap-4">
+                            <div>
+                                <label for="latitude" class="block mb-2 font-medium text-md antialiased text-neutral-500">Latitude</label>
+                                <input type="text" class="rounded p-4 bg-neutral-50 block w-full @error('latitude') border border-red-500 @enderror" placeholder="23.321" name="latitude" id="latitude" />
+                                @error('latitude')
+                                <p class="text-red-500 font-medium mt-2 text-sm">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+                            <div>
+                                <label for="longitude" class="block mb-2 font-medium text-md antialiased text-neutral-500">Longitude</label>
+                                <input type="text" class="rounded p-4 bg-neutral-50 block w-full @error('longitude') border border-red-500 @enderror" placeholder="13.421" name="longitude" id="longitude" />
+                                @error('longitude')
+                                <p class="text-red-500 font-medium mt-2 text-sm">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+                        </div>
                         <div class="mb-6">
                             <label for="description" class="block mb-2 font-medium text-md antialiased text-neutral-500">Description</label>
                             <textarea class="rounded p-4 bg-neutral-50 block w-full @error('description') border border-red-500 @enderror" name="description" id="description">This place so great...</textarea>
