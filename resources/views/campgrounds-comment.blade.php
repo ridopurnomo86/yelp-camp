@@ -1,17 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comment</title>
-    @vite('resources/css/app.css')
-</head>
-
-<body>
-    <x-navbar />
-    <main class="mx-auto container">
-        <div class="w-full h-full flex items-center my-10">
+<x-layout title="Add Comment">
+    <main class="w-full h-full flex items-center my-10">
             <div class="w-full flex flex-col items-center justify-center">
                 <div class="w-[500px] max-[768px]:w-full px-10">
                     <h1 class="text-center text-2xl max-[1200px]:text-lg font-bold text-black antialiased mb-8">Add New Campground</h1>
@@ -32,9 +20,5 @@
                     </form>
                 </div>
             </div>
-        </div>
-
     </main>
-</body>
-
-</html>
+</x-layout>

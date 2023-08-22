@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ $camp->camp_name }}</title>
-    @vite('resources/css/app.css')
-</head>
-
-<body>
-    <x-navbar />
-    <main class="mx-auto container grid max-[1200px]:grid-cols-1 grid-cols-[30%,auto] gap-8 mb-20">
+<x-layout title="{{ $camp->camp_name }}">
+    <main class="grid max-[1200px]:grid-cols-1 grid-cols-[30%,auto] gap-8 mb-20">
         <div class="p-12 max-[600px]:p-6 border rounded w-full h-min max-[1200px]:order-2">
             <iframe class="rounded w-full" height="400" src="https://api.maptiler.com/maps/basic-v2/?key=O9g5DTVe3HSKnZAHGhjm#0.6/{{ $camp->latitude }}/{{ $camp->longitude }}"></iframe>
         </div>
@@ -57,6 +46,4 @@
             </div>
         </div>
     </main>
-</body>
-
-</html>
+</x-layout>
